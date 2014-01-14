@@ -14,6 +14,7 @@ function content(response){
 	});
 }
 
+//This function gets the file that was requested by the requestHandlers.js function open
 function other(response, pathname){
 	console.log("Request handler "+pathname+" was called.");
 	fs.readFile("./content"+pathname, function(error, file) {

@@ -6,7 +6,7 @@ function start(route, handle, content, other) {
 		var pathname = url.parse(request.url).pathname;
 
 		console.log("Request for " + pathname + " received.");
-
+		//Route to requested page
 		route(handle, pathname, response, request, content, other);
 	}
   	http.createServer(onRequest).listen(8888);
