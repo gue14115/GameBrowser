@@ -1,6 +1,6 @@
 var fs = require("fs");
 function content(response){
-    console.log("Request handler 'show' was called.");
+    //console.log("Request handler 'show' was called.");
 	fs.readFile("./content/index.html", function(error, file) {
 		if (error) {
 			response.writeHead(500, {"Content-Type": "text/plain"});
@@ -16,7 +16,7 @@ function content(response){
 
 //This function gets the file that was requested by the requestHandlers.js function open
 function other(response, pathname){
-	console.log("Request handler "+pathname+" was called.");
+	//console.log("Request handler "+pathname+" was called.");
 	fs.readFile("./content"+pathname, function(error, file) {
 		if (error) {
 			response.writeHead(500, {"Content-Type": "text/plain"});
@@ -26,7 +26,7 @@ function other(response, pathname){
 			var res = pathname.split("/");
 			var res2 = res[res.length-1].split(".");
 			var res3 = res2[res2.length-1];
-			console.log("Returning a file the extension: "+res3);
+			//console.log("Returning a file the extension: "+res3);
 			if(res3=="css"){
 				response.writeHead(200, {"Content-Type": "text/css"});
 				response.write(file);
