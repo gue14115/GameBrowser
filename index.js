@@ -5,11 +5,12 @@ var viewer = require("./viewer");
 
 var handle = {}
 //Says that if we receive / we should use the start function of the module requesthandlers
+//handle["/"] = requestHandlers.start; deprecated
 handle["/"] = requestHandlers.start;
-//help
+//help DEPRECATED
 handle["/help.html"] = requestHandlers.open;
-//About
+//About DEPRECATED
 handle["/about.html"] = requestHandlers.open;
 //Check for each file individually
 handle["dynamic"] = requestHandlers.open;
-server.start(router.route, handle, viewer.content, viewer.other);
+server.start(router.route, handle, viewer.content,viewer.content2, viewer.other, viewer.other2);
