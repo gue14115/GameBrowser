@@ -21,22 +21,16 @@ function showContentAndCreateCookies(response, pathname, bonus, uuid){
 			var res3 = res2[res2.length-1];
 			//console.log("Returning a file the extension: "+res3);
 			if(res3=="css"){
-				//response.writeHead(200, {"Content-Type": "text/css"});
-                //addHeader(response,200,"text/css");
                 handle[bonus](response,200,"text/css",uuid);
 				response.write(file);
 				response.end();
 			}
 			if(res3=="js"){
-				//response.writeHead(200, {"Content-Type": "text/js"});
-                //addHeader(response,200,"application/javascript");
                 handle[bonus](response,200,"application/javascript",uuid);
 				response.write(file);
 				response.end();
 			}
 			if(res3!="css"||res3!="js"){
-				//response.writeHead(200, {"Content-Type": "text/html"});
-                //addHeader(response,200,"text/html");
                 handle[bonus](response,200,"text/html",uuid);
 				response.write(file);
 				response.end();
