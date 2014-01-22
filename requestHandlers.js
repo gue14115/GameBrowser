@@ -1,18 +1,20 @@
 var querystring = require("querystring")
 var users = {};
 
+
 //Other pages
 function open(response, postData,pathname, showContentAndCreateCookies, showContentAndReuseCookies){
 	console.log("Request handler 'help' was called.");
 	var cookies = parseCookies(postData);
 	if(typeof cookies["gbsessioncookie"] == "string"){
+        var uuid = createUUID();
 		console.log("Cookie was reused");
-		showContentAndCreateCookies(response, pathname);
+		showContentAndCreateCookies(response, pathname,"Cookies", uuid);
 	}
 	else{
 		var uuid = createUUID();
 		console.log("Cookie was created");
-		showContentAndReuseCookies(response, pathname, uuid);
+        showContentAndCreateCookies(response, pathname,"NoCookies",uuid);
 	}
 }
 
