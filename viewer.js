@@ -1,13 +1,5 @@
 var fs = require("fs");
 var handle = {}
-//Says that if we receive / we should use the start function of the module requesthandlers
-//handle["/"] = requestHandlers.start; deprecated
-//handle["/"] = requestHandlers.start;
-//help DEPRECATED
-//handle["/help.html"] = requestHandlers.open;
-//About DEPRECATED
-//handle["/about.html"] = requestHandlers.open;
-//Check for each file individually;
 handle["Cookies"] = addHeader;
 handle["NoCookies"] = addHeaderWithCookies;
 
