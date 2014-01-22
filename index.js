@@ -8,9 +8,9 @@ var handle = {}
 //handle["/"] = requestHandlers.start; deprecated
 handle["/"] = requestHandlers.start;
 //help DEPRECATED
-handle["/help.html"] = requestHandlers.open;
+//handle["/help.html"] = requestHandlers.open;
 //About DEPRECATED
-handle["/about.html"] = requestHandlers.open;
+//handle["/about.html"] = requestHandlers.open;
 //Check for each file individually
 handle["dynamic"] = requestHandlers.open;
-server.start(router.route, handle, viewer.content,viewer.content2, viewer.other, viewer.other2);
+server.start(router.route, handle, viewer.showIndexContentAndCreateCookies,viewer.showIndexContentAndReuseCookies, viewer.showContentAndCreateCookies, viewer.showContentAndReuseCookies);

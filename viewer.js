@@ -1,7 +1,7 @@
 var fs = require("fs");
 
 
-function content(response){
+function showIndexContentAndCreateCookies(response){
     //console.log("Request handler 'show' was called.");
 	fs.readFile("./content/index.html", function(error, file) {
 		if (error) {
@@ -17,7 +17,7 @@ function content(response){
 	console.log("------------------------------------------------");
 }
 
-function content2(response,uuid){
+function showIndexContentAndReuseCookies(response,uuid){
     var se= "\'Set-Cookie\'";
     var s= "\'gbsessioncookie=\'"+uuid;
 	console.log("Created uuid is:"+uuid);
@@ -36,7 +36,7 @@ function content2(response,uuid){
 }
 
 //This function gets the file that was requested by the requestHandlers.js function open
-function other(response, pathname){
+function showContentAndCreateCookies(response, pathname){
 	//console.log("Request handler "+pathname+" was called.");
 	fs.readFile("./content"+pathname, function(error, file) {
 		if (error) {
@@ -71,8 +71,8 @@ function other(response, pathname){
 	console.log("------------------------------------------------");
 }
 
-//same as other but creates a session id (is called several time right now when the html file links to other files because it does not create the id until it is finished with the linked files which in turn generate uuids)
-function other2(response, pathname, uuid){
+//same as showContentAndCreateCookies but creates a session id (is called several time right now when the html file links to showContentAndCreateCookies files because it does not create the id until it is finished with the linked files which in turn generate uuids)
+function showContentAndReuseCookies(response, pathname, uuid){
 	//console.log("Request handler "+pathname+" was called.");
 	console.log("Created uuid is:"+uuid+" "+pathname);
 	fs.readFile("./content"+pathname, function(error, file) {
@@ -118,7 +118,7 @@ function addHeader(response,errorcode,type){
     response.writeHead(errorcode, {"Content-Type": type});
 }
 
-exports.content = content;
-exports.content2 = content2;
-exports.other = other;
-exports.other2 = other2;
+exports.showIndexContentAndCreateCookies = showIndexContentAndCreateCookies;
+exports.showIndexContentAndReuseCookies = showIndexContentAndReuseCookies;
+exports.showContentAndCreateCookies = showContentAndCreateCookies;
+exports.showContentAndReuseCookies = showContentAndReuseCookies;

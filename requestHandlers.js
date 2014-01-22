@@ -1,32 +1,32 @@
 var querystring = require("querystring")
 var users = {};
 
-function start(response, postData, content, content2, pathname, other, other2) {
+function start(response, postData, showIndexContentAndCreateCookies, showIndexContentAndReuseCookies) {
 	console.log("Request handler 'start' was called.");
 	//content(response); DEPRECATED
 	var cookies = parseCookies(postData);
 	if(typeof cookies["gbsessioncookie"] == "string"){
 		console.log("Cookie was reused");
-		content(response);
+		showIndexContentAndCreateCookies(response);
 	}
 	else{
 		var uuid = createUUID();
 		console.log("Cookie was created");
-		content2(response, uuid);
+		showIndexContentAndReuseCookies(response, uuid);
 	}
 }
 
-function open(response, postData, content, content2, pathname, other, other2){
+function open(response, postData,pathname, showContentAndCreateCookies, showContentAndReuseCookies){
 	console.log("Request handler 'help' was called.");
 	var cookies = parseCookies(postData);
 	if(typeof cookies["gbsessioncookie"] == "string"){
 		console.log("Cookie was reused");
-		other(response, pathname);
+		showContentAndCreateCookies(response, pathname);
 	}
 	else{
 		var uuid = createUUID();
 		console.log("Cookie was created");
-		other2(response, pathname, uuid);
+		showContentAndReuseCookies(response, pathname, uuid);
 	}
 }
 
