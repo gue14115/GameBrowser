@@ -16,7 +16,6 @@ function showContentAndCreateCookies(response, pathname, bonus, uuid){
 			response.write(error + "\n");
 			response.end();
 		} else { //Checks which extension the path has (which kind of file should be written into the response)
-            console.log("HELLLLLLO"+handle[bonus]);
 			var res = pathname.split("/");
 			var res2 = res[res.length-1].split(".");
 			var res3 = res2[res2.length-1];
