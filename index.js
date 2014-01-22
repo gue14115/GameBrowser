@@ -4,4 +4,4 @@ var requestHandlers = require("./requestHandlers");
 var viewer = require("./viewer");
 
 open = requestHandlers.open;
-server.start(router.route, open, viewer.showIndexContentAndCreateCookies,viewer.showIndexContentAndReuseCookies, viewer.showContentAndCreateCookies, viewer.showContentAndReuseCookies);
+server.start(router.route, open, viewer.showContentAndCreateCookies, viewer.showContentAndReuseCookies);

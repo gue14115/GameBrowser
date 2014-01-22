@@ -1,4 +1,4 @@
-function route(open, pathname, response, request, showIndexContentAndCreateCookies, showIndexContentAndReuseCookies, showContentAndCreateCookies, showContentAndReuseCookies) {
+function route(open, pathname, response, request, showContentAndCreateCookies, showContentAndReuseCookies) {
 	console.log("About to route a request for " + pathname);
     open(response, request, pathname, showContentAndCreateCookies, showContentAndReuseCookies);
 }
