@@ -1,7 +1,8 @@
 var querystring = require("querystring")
+var users = {};
 
 function start(response, postData, content, content2, pathname, other, other2) {
-	//console.log("Request handler 'start' was called.");
+	console.log("Request handler 'start' was called.");
 	//content(response); DEPRECATED
 	var cookies = parseCookies(postData);
 	if(typeof cookies["gbsessioncookie"] == "string"){
@@ -16,7 +17,7 @@ function start(response, postData, content, content2, pathname, other, other2) {
 }
 
 function open(response, postData, content, content2, pathname, other, other2){
-	//console.log("Request handler 'help' was called.");
+	console.log("Request handler 'help' was called.");
 	var cookies = parseCookies(postData);
 	if(typeof cookies["gbsessioncookie"] == "string"){
 		console.log("Cookie was reused");

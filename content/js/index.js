@@ -1,4 +1,4 @@
 function greet()
 {
-	document.getElementById("user-greeting").innerHTML="ROFL";
+	document.getElementById("user-greeting").innerHTML="TEST";
 }

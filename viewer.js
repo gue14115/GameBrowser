@@ -12,6 +12,7 @@ function content(response){
 			response.end();
 		}
 	});
+	console.log("------------------------------------------------");
 }
 
 function content2(response,uuid){
@@ -33,6 +34,7 @@ function content2(response,uuid){
 			response.end();
 		}
 	});
+	console.log("------------------------------------------------");
 }
 
 //This function gets the file that was requested by the requestHandlers.js function open
@@ -65,6 +67,7 @@ function other(response, pathname){
 			}
 		}
 	});
+	console.log("------------------------------------------------");
 }
 
 //same as other but creates a session id (is called several time right now when the html file links to other files because it does not create the id until it is finished with the linked files which in turn generate uuids)
@@ -107,6 +110,7 @@ function other2(response, pathname, uuid){
 			}
 		}
 	});
+	console.log("------------------------------------------------");
 }
 exports.content = content;
 exports.content2 = content2;
