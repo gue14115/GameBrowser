@@ -1,13 +1,15 @@
 var fs = require("fs");
+
+
 function content(response){
     //console.log("Request handler 'show' was called.");
 	fs.readFile("./content/index.html", function(error, file) {
 		if (error) {
-			response.writeHead(500, {"Content-Type": "text/plain"});
+			addHeader(response,500,"text/plain");
 			response.write(error + "\n");
 			response.end();
 		} else {
-			response.writeHead(200, {"Content-Type": "text/html"});
+			addHeader(response,200,"text/html");
 			response.write(file);
 			response.end();
 		}
@@ -16,20 +18,16 @@ function content(response){
 }
 
 function content2(response,uuid){
+    var se= "\'Set-Cookie\'";
+    var s= "\'gbsessioncookie=\'"+uuid;
 	console.log("Created uuid is:"+uuid);
 	fs.readFile("./content/index.html", function(error, file) {
 		if (error) {
-			response.writeHead(500, {
-				'Set-Cookie': 'gbsessioncookie='+uuid,
-				"Content-Type": "text/plain"
-			});
+			addHeaderWithCookies(response,uuid,500,"text/plain");
 			response.write(error + "\n");
 			response.end();
 		} else {
-			response.writeHead(200, {
-				'Set-Cookie': 'gbsessioncookie='+uuid,
-				"Content-Type": "text/html"
-			});
+			addHeaderWithCookies(response,uuid,200,"text/html");
 			response.write(file);
 			response.end();
 		}
@@ -51,17 +49,20 @@ function other(response, pathname){
 			var res3 = res2[res2.length-1];
 			//console.log("Returning a file the extension: "+res3);
 			if(res3=="css"){
-				response.writeHead(200, {"Content-Type": "text/css"});
+				//response.writeHead(200, {"Content-Type": "text/css"});
+                addHeader(response,200,"text/css");
 				response.write(file);
 				response.end();
 			}
 			if(res3=="js"){
-				response.writeHead(200, {"Content-Type": "text/js"});
+				//response.writeHead(200, {"Content-Type": "text/js"});
+                addHeader(response,200,"text/js");
 				response.write(file);
 				response.end();
 			}
 			if(res3!="css"||res3!="js"){
-				response.writeHead(200, {"Content-Type": "text/html"});
+				//response.writeHead(200, {"Content-Type": "text/html"});
+                addHeader(response,200,"text/html");
 				response.write(file);
 				response.end();
 			}
@@ -85,26 +86,17 @@ function other2(response, pathname, uuid){
 			var res3 = res2[res2.length-1];
 			//console.log("Returning a file the extension: "+res3);
 			if(res3=="css"){
-				response.writeHead(200, {
-					'Set-Cookie': 'gbsessioncookie='+uuid,
-					"Content-Type": "text/css"
-				});
+                addHeaderWithCookies(response,uuid,200,"text/css");
 				response.write(file);
 				response.end();
 			}
 			if(res3=="js"){
-				response.writeHead(200, {
-					'Set-Cookie': 'gbsessioncookie='+uuid,
-					"Content-Type": "text/js"
-				});
+                addHeaderWithCookies(response,uuid,200,"text/js");
 				response.write(file);
 				response.end();
 			}
 			if(res3!="css"||res3!="js"){
-				response.writeHead(200, {
-					'Set-Cookie': 'gbsessioncookie='+uuid,
-					"Content-Type": "text/html"
-				});
+                addHeaderWithCookies(response,uuid,200,"text/html");
 				response.write(file);
 				response.end();
 			}
@@ -112,6 +104,20 @@ function other2(response, pathname, uuid){
 	});
 	console.log("------------------------------------------------");
 }
+
+//Header that sets a cookie
+function addHeaderWithCookies(response,uuid,errorcode, type){
+    response.writeHead(errorcode, {
+        'Set-Cookie': 'gbsessioncookie='+uuid,
+        "Content-Type": type
+    });
+}
+
+//Header that sets no cookie
+function addHeader(response,errorcode,type){
+    response.writeHead(errorcode, {"Content-Type": type});
+}
+
 exports.content = content;
 exports.content2 = content2;
 exports.other = other;
