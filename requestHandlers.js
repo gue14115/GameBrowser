@@ -3,18 +3,18 @@ var users = {};
 
 
 //Other pages
-function open(response, postData,pathname, showContentAndCreateCookies, showContentAndReuseCookies){
+function open(response, postData,pathname, show){
 	console.log("Request handler 'help' was called.");
 	var cookies = parseCookies(postData);
 	if(typeof cookies["gbsessioncookie"] == "string"){
         var uuid = createUUID();
 		console.log("Cookie was reused");
-		showContentAndCreateCookies(response, pathname,"Cookies", uuid);
+		show(response, pathname,"Cookies", uuid);
 	}
 	else{
 		var uuid = createUUID();
 		console.log("Cookie was created");
-        showContentAndCreateCookies(response, pathname,"NoCookies",uuid);
+        show(response, pathname,"NoCookies",uuid);
 	}
 }
 

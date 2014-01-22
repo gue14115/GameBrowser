@@ -5,4 +5,4 @@ var viewer = require("./viewer");
 
 
 open = requestHandlers.open;
-server.start(router.route, open, viewer.showContentAndCreateCookies, viewer.showContentAndReuseCookies);
+server.start(router.route, open, viewer.show);

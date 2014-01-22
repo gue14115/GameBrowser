@@ -5,7 +5,7 @@ handle["NoCookies"] = addHeaderWithCookies;
 
 
 //This function gets the file that was requested by the requestHandlers.js function open
-function showContentAndCreateCookies(response, pathname, bonus, uuid){
+function show(response, pathname, bonus, uuid){
 	//console.log("Request handler "+pathname+" was called.");
     if(pathname=="/"){
         pathname = "/index.html";
@@ -19,7 +19,6 @@ function showContentAndCreateCookies(response, pathname, bonus, uuid){
 			var res = pathname.split("/");
 			var res2 = res[res.length-1].split(".");
 			var res3 = res2[res2.length-1];
-			//console.log("Returning a file the extension: "+res3);
 			if(res3=="css"){
                 handle[bonus](response,200,"text/css",uuid);
 				response.write(file);
@@ -53,5 +52,4 @@ function addHeader(response,errorcode,type){
     response.writeHead(errorcode, {"Content-Type": type});
 }
 
-exports.showContentAndCreateCookies = showContentAndCreateCookies;
-exports.showContentAndReuseCookies = showContentAndReuseCookies;
+exports.show = show;
