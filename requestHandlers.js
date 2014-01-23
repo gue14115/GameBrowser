@@ -1,6 +1,4 @@
 var querystring = require("querystring")
-var users = {};
-
 
 //Other pages
 function open(response, postData,pathname, show){
@@ -14,9 +12,9 @@ function open(response, postData,pathname, show){
 	else{
 		var uuid = createUUID();
 		console.log("Cookie was created");
-        show(response, pathname,"NoCookies",uuid);
+        show(response, "/login.html","NoCookies",uuid);
 	}
-}
+};
 
 
 function parseCookies (request) {
@@ -29,7 +27,7 @@ function parseCookies (request) {
     });
 
     return list;
-}
+};
 
 //Creates UUID
 function createUUID() {
@@ -45,5 +43,5 @@ function createUUID() {
 
     var uuid = s.join("");
     return uuid;
-}
+};
 exports.open = open;

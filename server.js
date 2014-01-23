@@ -8,8 +8,8 @@ function start(route, open, show) {
 		console.log("Request for " + pathname + " received.");
 		//Route to requested page
 		route(open, pathname, response, request, show);
-	}
+	};
   	http.createServer(onRequest).listen(8888);
   	console.log("Server has started.");
-}
+};
 exports.start = start;

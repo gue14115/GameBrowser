@@ -37,7 +37,7 @@ function show(response, pathname, bonus, uuid){
 		}
 	});
 	console.log("------------------------------------------------");
-}
+};
 
 //Header that sets a cookie
 function addHeaderWithCookies(response,errorcode, type, uuid){
@@ -45,11 +45,11 @@ function addHeaderWithCookies(response,errorcode, type, uuid){
         'Set-Cookie': 'gbsessioncookie='+uuid,
         "Content-Type": type
     });
-}
+};
 
 //Header that sets no cookie
 function addHeader(response,errorcode,type){
     response.writeHead(errorcode, {"Content-Type": type});
-}
+};
 
 exports.show = show;
