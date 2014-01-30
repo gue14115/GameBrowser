@@ -43,13 +43,17 @@ function show(response, pathname, bonus, uuid){
 function addHeaderWithCookies(response,errorcode, type, uuid){
     response.writeHead(errorcode, {
         'Set-Cookie': 'gbsessioncookie='+uuid,
-        "Content-Type": type
+        "Content-Type": type,
+        'Access-Control-Allow-Origin': '*'
     });
 };
 
 //Header that sets no cookie
 function addHeader(response,errorcode,type){
-    response.writeHead(errorcode, {"Content-Type": type});
+    response.writeHead(errorcode, {
+        "Content-Type": type,
+        'Access-Control-Allow-Origin': '*'
+    });
 };
 
 exports.show = show;

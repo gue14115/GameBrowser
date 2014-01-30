@@ -2,6 +2,12 @@ var querystring = require("querystring")
 
 //Other pages
 function open(response, postData,pathname, show){
+    if(postData.method == 'POST'){
+        console.log("POST");
+    }
+    if(postData.method == 'GET'){
+        console.log("GET");
+    }
 	console.log("Request handler 'help' was called.");
 	var cookies = parseCookies(postData);
 	if(typeof cookies["gbsessioncookie"] == "string"){

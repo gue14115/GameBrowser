@@ -1,4 +1,6 @@
 var http = require("http"); var url = require("url");
+var serverUrl = "127.0.0.1";
+var port = 8888;
 
 //Called when the server starts
 function start(route, open, show) {
@@ -9,7 +11,7 @@ function start(route, open, show) {
 		//Route to requested page
 		route(open, pathname, response, request, show);
 	};
-  	http.createServer(onRequest).listen(8888);
+  	http.createServer(onRequest).listen(port,serverUrl);
   	console.log("Server has started.");
 };
 exports.start = start;
