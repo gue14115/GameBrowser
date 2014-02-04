@@ -5,33 +5,37 @@ function open(response, request,pathname, show){
     if(request.method == 'POST'){
         console.log("POST");
         var postData = '';
+        //When data is being received
         request.on('data', function(chunk) {
+            //Add the chunk of the data to the postData
             postData += chunk;
+            console.log("The postData is: "+postData);
         });
-        console.log(postData);
-
+        //When the request data has been sent completely
         request.on('end', function() {
             var decodedBody = querystring.parse(postData);
-            if(decodedBody.action == 'requestToken'){
-                console.log("Test");
+            //Checks what action has occured
+            if(decodedBody.action == 'login'){
+                console.log("Email:"+decodedBody.email);
+                console.log("Password:"+decodedBody.password);
             }
         });
     }
     if(request.method == 'GET'){
         console.log("GET");
+        console.log("Request handler 'help' was called.");
+        var cookies = parseCookies(request);
+        if(typeof cookies["gbsessioncookie"] == "string"){
+            var uuid = createUUID();
+            console.log("Cookie was reused");
+            show(response, pathname,"Cookies", uuid);
+        }
+        else{
+            var uuid = createUUID();
+            console.log("Cookie was created");
+            show(response, "/login.html","NoCookies",uuid);
+        }
     }
-	console.log("Request handler 'help' was called.");
-	var cookies = parseCookies(request);
-	if(typeof cookies["gbsessioncookie"] == "string"){
-        var uuid = createUUID();
-		console.log("Cookie was reused");
-		show(response, pathname,"Cookies", uuid);
-	}
-	else{
-		var uuid = createUUID();
-		console.log("Cookie was created");
-        show(response, "/login.html","NoCookies",uuid);
-	}
 };
 
 

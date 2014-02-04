@@ -10,7 +10,7 @@ function login(){
     $.ajax({
         type: "POST",
         url: serverurl,
-        data: {action:"requestToken", username:$('#inputUser').val(), password:$('#inputPassword').val()},
+        data: {action:"login", email:$('#email').val(), password:$('#password').val()},
         success: responseErhalten,
         error: serverfehler
     });
