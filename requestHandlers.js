@@ -1,15 +1,27 @@
 var querystring = require("querystring")
 
 //Other pages
-function open(response, postData,pathname, show){
-    if(postData.method == 'POST'){
+function open(response, request,pathname, show){
+    if(request.method == 'POST'){
         console.log("POST");
+        var postData = '';
+        request.on('data', function(chunk) {
+            postData += chunk;
+        });
+        console.log(postData);
+
+        request.on('end', function() {
+            var decodedBody = querystring.parse(postData);
+            if(decodedBody.action == 'requestToken'){
+                console.log("Test");
+            }
+        });
     }
-    if(postData.method == 'GET'){
+    if(request.method == 'GET'){
         console.log("GET");
     }
 	console.log("Request handler 'help' was called.");
-	var cookies = parseCookies(postData);
+	var cookies = parseCookies(request);
 	if(typeof cookies["gbsessioncookie"] == "string"){
         var uuid = createUUID();
 		console.log("Cookie was reused");
