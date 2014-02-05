@@ -1,4 +1,6 @@
-var querystring = require("querystring")
+var querystring = require("querystring");
+var data = require("./database");
+var db = new data.database("GameBrowserDatabase");
 
 //Other pages
 function open(response, request,pathname, show){
@@ -18,6 +20,9 @@ function open(response, request,pathname, show){
             if(decodedBody.action == 'login'){
                 console.log("Email:"+decodedBody.email);
                 console.log("Password:"+decodedBody.password);
+                db.checkLogin(function(data){
+                    console.log(JSON.stringify(data));
+                })
             }
         });
     }
