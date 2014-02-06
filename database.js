@@ -8,7 +8,10 @@ exports.database = function(dbName) {
 
     this.checkLogin = function(email,password,callb){
         db.all("SELECT u_id FROM u_users WHERE u_email=$email AND u_password=$password",{$email: email, $password: password},function(err,row){
-            callb(row);
+            if(row.length>0)
+                callb(1,row[0]);
+            else
+                callb(0);
         });
     }
 };
