@@ -20,7 +20,7 @@ function open(response, request,pathname, show){
             if(decodedBody.action == 'login'){
                 console.log("Email:"+decodedBody.email);
                 console.log("Password:"+decodedBody.password);
-                db.checkLogin(function(data){
+                db.checkLogin(decodedBody.email,decodedBody.password,function callback(data){
                     console.log(JSON.stringify(data));
                 })
             }

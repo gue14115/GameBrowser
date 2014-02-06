@@ -6,8 +6,8 @@ var sqlite3 = require('sqlite3').verbose();
 exports.database = function(dbName) {
     var db = new sqlite3.Database(dbName);
 
-    this.checkLogin = function(callb){
-        db.all("SELECT * FROM u_users where u_id = 1",function(err,row){
+    this.checkLogin = function(email,password,callb){
+        db.all("SELECT u_id FROM u_users WHERE u_email=$email AND u_password=$password",{$email: email, $password: password},function(err,row){
             callb(row);
         });
     }
