@@ -1,4 +1,9 @@
 .main-content{
 	margin: 10px;
 }
-
+#content{
+    text-align: center;
+}
+.centered {
+    display: inline-block;
+}

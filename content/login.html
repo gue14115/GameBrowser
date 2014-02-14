@@ -1,56 +1,61 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>GameBrowser</title>
-        <!-- Jquery -->
-        <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<head>
+    <title>GameBrowser</title>
+    <!-- Jquery -->
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 
-		<!-- Optional theme -->
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
 
-		<!-- Custom Style sheet -->
-		<link rel = "stylesheet" type = "text/css" href = "css/style.css" />
+    <!-- Custom Style sheet -->
+    <link rel = "stylesheet" type = "text/css" href = "css/style.css" />
 
-		<!-- Latest compiled and minified JavaScript -->
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
-        <!-- Javascript that is shared by the htmls -->
-        <script src="js/common.js"></script>
-	</head>
-	<body>
-		<div class="container">
+    <!-- Javascript that is shared by the htmls -->
+    <script src="js/common.js"></script>
+</head>
+<body>
+<div class="container">
+    <!-- Margin from top -->
+    <div class="row" style="margin-top:20px">
+        <!-- Login -->
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <form class="form-horizontal">
+                <!-- Header -->
+                <div class="form-group">
+                    <h2>Please Sign In</h2>
+                </div>
 
-		<div class="row" style="margin-top:20px">
-		    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-				<form role="form">
-					<fieldset>
-						<h2>Please Sign In</h2>
-						<hr class="colorgraph">
-						<div class="form-group">
-		                    <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address">
-						</div>
-						<div class="form-group">
-		                    <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password">
-						</div>
-						<span class="button-checkbox">
-							<button type="button" class="btn" data-color="info">Remember Me</button>
-		                    <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
-							<a href="" class="btn btn-link pull-right">Forgot Password?</a>
-						</span>
-						<hr class="colorgraph">
-						<div class="row">
-							<div class="col-xs-6 col-sm-6 col-md-6">
-                                <button type="button" class="btn btn-default pull-right" onclick="login()">Login</button>
-		                        <!-- <input type="submit" onclick="login()" class="btn btn-lg btn-success btn-block" value="Sign In"> -->
-							</div>
-							<div class="col-xs-6 col-sm-6 col-md-6">
-								<a href="" class="btn btn-lg btn-primary btn-block">Register</a>
-							</div>
-						</div>
-					</fieldset>
-				</form>
-			</div>
-		</div>
-	</body>
+                <!-- Email -->
+                <div class="form-group">
+                    <hr>
+                    <input id="email" type="email" class="form-control input-lg" id="inputEmail3" placeholder="Email">
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <input id="password" type="password" class="form-control input-lg" id="inputPassword3" placeholder="Password">
+                    <hr>
+                </div>
+
+                <!-- Submit -->
+                <div class="row">
+                    <!-- Login -->
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="login()">Sign in!</button>
+                    </div>
+                    <!-- Register -->
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <button type="button" class="btn btn-default btn-lg btn-block pull-right">Register</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
 
 </html>
