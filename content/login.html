@@ -30,13 +30,13 @@
                 </div>
 
                 <!-- Email -->
-                <div class="form-group">
+                <div id="emailContainer" class="form-group">
                     <hr>
                     <input id="email" type="email" class="form-control input-lg" id="inputEmail3" placeholder="Email">
                 </div>
 
                 <!-- Password -->
-                <div class="form-group">
+                <div id="passwordContainer" class="form-group">
                     <input id="password" type="password" class="form-control input-lg" id="inputPassword3" placeholder="Password">
                     <hr>
                 </div>
@@ -51,6 +51,11 @@
                     <div class="col-xs-6 col-sm-6 col-md-6">
                         <button type="button" class="btn btn-default btn-lg btn-block pull-right">Register</button>
                     </div>
+                </div>
+                <!-- Validation message -->
+                <div id="validation" class="alert alert-danger" style="display: none; margin-top: 5px">
+                    <span >Email and/or password are wrong.</span>
+
                 </div>
             </form>
         </div>

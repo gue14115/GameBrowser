@@ -16,7 +16,9 @@ function login(){
 
 function response(data){
     if(data=="error"){
-        $('#email').val("Username and password combination wrong");
+        $('#emailContainer').attr('class', 'form-group has-error');
+        $('#passwordContainer').attr('class', 'form-group has-error');
+        $('#validation').show();
     }
     else{
         id = data["u_id"];
