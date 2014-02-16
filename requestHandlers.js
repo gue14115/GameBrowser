@@ -1,57 +1,22 @@
 var querystring = require("querystring");
 var data = require("./database");
 var db = new data.database("GameBrowserDatabase");
+var uuid;
 
 //Other pages
 function open(response, request,pathname, show){
-    if(request.method == 'POST'){
-        console.log("POST");
-        var postData = '';
-        //When data is being received
-        request.on('data', function(chunk) {
-            //Add the chunk of the data to the postData
-            postData += chunk;
-            console.log("The postData is: "+postData);
-        });
-        //When the request data has been sent completely
-        request.on('end', function() {
-            var decodedBody = querystring.parse(postData);
-            //Checks what action has occured
-            if(decodedBody.action == 'login'){
-                console.log("Email:"+decodedBody.email);
-                console.log("Password:"+decodedBody.password);
-                db.checkLogin(decodedBody.email,decodedBody.password,function callback(success,data){
-                    console.log(JSON.stringify(data));
-                    if(success==true){
-                        console.log("Logged in");
-                        response.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
-                        response.end(JSON.stringify(data));
-                    }
-                    else{
-                        console.log("Not logged in");
-                        response.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
-                        response.end("error");
-                    }
-                })
-            }
-        });
-    }
-    if(request.method == 'GET'){
-        console.log("GET");
-        console.log("Request handler 'help' was called.");
         var cookies = parseCookies(request);
         if(typeof cookies["gbsessioncookie"] == "string"){
-            var uuid = createUUID();
+            uuid = createUUID();
             console.log("Cookie was reused");
             show(response, pathname,"Cookies", uuid);
         }
         else{
-            var uuid = createUUID();
+            uuid = createUUID();
             console.log("Cookie was created");
             show(response, "/login.html","NoCookies",uuid);
         }
-    }
-};
+}
 
 
 function parseCookies (request) {
@@ -64,7 +29,7 @@ function parseCookies (request) {
     });
 
     return list;
-};
+}
 
 //Creates UUID
 function createUUID() {
@@ -78,7 +43,7 @@ function createUUID() {
     s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
     s[8] = s[13] = s[18] = s[23] = "-";
 
-    var uuid = s.join("");
+    uuid = s.join("");
     return uuid;
-};
+}
 exports.open = open;
