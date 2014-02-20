@@ -14,4 +14,15 @@ exports.database = function(dbName) {
                 callb(0);
         });
     }
+
+    this.addSession = function(uuid,email){
+        db.run("INSERT INTO s_sessions VALUES($s_id, $s_u_id)",{
+            $s_id: email,
+            $s_u_id: uuid
+        })
+    }
+
+    this.clearSession = function(){
+
+    }
 };

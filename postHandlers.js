@@ -4,7 +4,7 @@
 var data = require("./database");
 var db = new data.database("GameBrowserDatabase");
 
-function login(decodedBody,response){
+function login(decodedBody,response, request){
     if(decodedBody.action == 'login'){
         console.log("Email:"+decodedBody.email);
         console.log("Password:"+decodedBody.password);
@@ -12,16 +12,31 @@ function login(decodedBody,response){
             console.log(JSON.stringify(data));
             if(success==true){
                 console.log("Logged in");
-                response.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
+                var cookies = parseCookies(request);
+                console.log("with sessionid:"+cookies["gbsessioncookie"]);
+                db.addSession(cookies["gbsessioncookie"],decodedBody.email);
+                response.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'localhost:8888'});
                 response.end(JSON.stringify(data));
             }
             else{
                 console.log("Not logged in");
-                response.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
+                response.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': 'localhost:8888'});
                 response.end("error");
             }
         })
     }
+}
+
+function parseCookies (request) {
+    var list = {},
+        rc = request.headers.cookie;
+
+    rc && rc.split(';').forEach(function( cookie ) {
+        var parts = cookie.split('=');
+        list[parts.shift().trim()] = unescape(parts.join('='));
+    });
+
+    return list;
 }
 
 exports.login = login;
