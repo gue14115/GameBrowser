@@ -22,7 +22,9 @@ exports.database = function(dbName) {
         })
     }
 
-    this.clearSession = function(){
-
+    this.clearSession = function(session){
+        db.run("DELETE FROM s_sessions WHERE s_u_id = $session",{
+            $session: session
+        });
     }
 };

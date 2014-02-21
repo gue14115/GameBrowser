@@ -8,9 +8,11 @@ function login(){
     $.ajax({
         type: "POST",
         url: serverurl,
+        //Allows for cookies to be used
         xhrFields: {
             withCredentials: true
         },
+        //To a different domain
         crossDomain: true,
         data: {action:"login", email:$('#email').val(), password:$('#password').val()},
         success: response,

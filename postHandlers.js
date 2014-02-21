@@ -17,6 +17,10 @@ function login(decodedBody,response, request){
                 db.addSession(cookies["gbsessioncookie"],decodedBody.email);
                 response.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'localhost:8888'});
                 response.end(JSON.stringify(data));
+                myVar=setTimeout(function(){
+                    console.log("Clearing session: "+ cookies["gbsessioncookie"]);
+                    //db.clearSession(cookies["gbsessioncookie"]);
+                },30000);
             }
             else{
                 console.log("Not logged in");
