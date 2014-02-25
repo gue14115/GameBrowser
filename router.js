@@ -4,6 +4,7 @@ var db = new dataconnection.database("GameBrowserDatabase");
 
 function route(open, pathname, response, request, show, postHandle, bonus, uuid) {
     console.log("About to route a request for " + pathname);
+    var myVar;
     if (request.method == 'POST') {
         console.log("POST");
         var postData = '';
@@ -21,10 +22,11 @@ function route(open, pathname, response, request, show, postHandle, bonus, uuid)
             //Checks what action has occured
             postHandle[decodedBody.action](decodedBody, response, request, uuid);
             //After 24 minutes, clear the session
+            clearTimeout(myVar);
             myVar = setTimeout(function () {
                 console.log("Clearing session: " + uuid);
-                //db.clearSession(cookies["gbsessioncookie"]);
-            }, 10000);//1440000
+                db.clearSession(cookies["gbsessioncookie"]);
+            }, 100000);//1440000
         });
     }
     if (request.method == 'GET') {
