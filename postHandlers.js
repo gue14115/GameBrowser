@@ -23,4 +23,13 @@ function login(decodedBody, response, request, uuid) {
     })
 }
 
+function logout(decodedBody, response, request, uuid) {
+    console.log(uuid);
+    db.clearSession(uuid);
+    response.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'localhost:8888'});
+    response.end();
+    console.log();
+}
+
 exports.login = login;
+exports.logout = logout;

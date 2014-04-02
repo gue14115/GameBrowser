@@ -15,12 +15,28 @@ function login(){
         //To a different domain
         crossDomain: true,
         data: {action:"login", email:$('#email').val(), password:$('#password').val()},
-        success: response,
+        success: responseLogin,
         error: servererror
     });
 }
 
-function response(data){
+function logout(){
+    $.ajax({
+        type: "POST",
+        url: serverurl,
+        //Allows for cookies to be used
+        xhrFields: {
+            withCredentials: true
+        },
+        //To a different domain
+        crossDomain: true,
+        data: {action:"logout"},
+        success: responseLogout,
+        error: servererror
+    });
+}
+
+function responseLogin(data){
     if(data=="error"){
         $('#emailContainer').attr('class', 'form-group has-error');
         $('#passwordContainer').attr('class', 'form-group has-error');
@@ -31,5 +47,11 @@ function response(data){
         $('#email').val("Logged in as: "+id);
     }
 }
+
+function responseLogout(){
+    console.log("Hello");
+    window.location.replace('/login.html');
+}
+
 function servererror(){
 }

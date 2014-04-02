@@ -26,12 +26,27 @@ function route(open, pathname, response, request, show, postHandle, bonus, uuid)
             myVar = setTimeout(function () {
                 console.log("Clearing session: " + uuid);
                 db.clearSession(cookies["gbsessioncookie"]);
-            }, 100000);//1440000
+            }, 1000000);//1440000
         });
     }
     if (request.method == 'GET') {
         console.log("GET");
-        open(response, pathname, show, bonus, uuid);
+        if(pathname=="/login.html"||pathname=="/help.html"||pathname=="/about.html"||pathname=="/gamehub.html"||pathname=="/tradehub.html"||pathname=="/index.html"){
+        db.checkSession(uuid, function callback(success, data) {
+            if (success == true) {
+                if(pathname!="/login.html")
+                    open(response, pathname, show, bonus, uuid);
+                else
+                    open(response, "/index.html", show, bonus, uuid);
+            }
+            else {
+                open(response, "/login.html", show, bonus, uuid);
+            }
+        })
+        }
+        else{
+            open(response, pathname, show, bonus, uuid);
+        }
     }
 }
 exports.route = route;

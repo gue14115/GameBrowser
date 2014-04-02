@@ -6,6 +6,15 @@ var sqlite3 = require('sqlite3').verbose();
 exports.database = function (dbName) {
     var db = new sqlite3.Database(dbName);
 
+    this.checkSession = function(session, callb){
+        db.all("SELECT s_u_id FROM s_sessions WHERE s_id=$session", {$session: session}, function (err, row) {
+            if (row.length > 0)
+                callb(1, row[0]);
+            else
+                callb(0);
+        });
+    }
+
     this.checkLogin = function (email, password, callb) {
         db.all("SELECT u_id FROM u_users WHERE u_email=$email AND u_password=$password", {$email: email, $password: password}, function (err, row) {
             if (row.length > 0)
@@ -17,13 +26,13 @@ exports.database = function (dbName) {
 
     this.addSession = function (uuid, email) {
         db.run("INSERT INTO s_sessions VALUES($s_id, $s_u_id)", {
-            $s_id: email,
-            $s_u_id: uuid
+            $s_id: uuid,
+            $s_u_id: email
         })
     }
 
     this.clearSession = function (session) {
-        db.run("DELETE FROM s_sessions WHERE s_u_id = $session", {
+        db.run("DELETE FROM s_sessions WHERE s_id = $session", {
             $session: session
         });
     }
