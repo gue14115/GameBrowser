@@ -28,8 +28,40 @@ function logout(decodedBody, response, request, uuid) {
     db.clearSession(uuid);
     response.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'localhost:8888'});
     response.end();
-    console.log();
+}
+
+function greet(decodedBody, response, request, uuid){
+    console.log(uuid);
+
+    db.checkSession(uuid, function callback(success, data) {
+        console.log(JSON.stringify(data));
+        if (success == true) {
+            response.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'localhost:8888'});
+            response.end(JSON.stringify(data));
+        }
+        else {
+            response.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': 'localhost:8888'});
+            response.end("error");
+        }
+    })
+}
+
+function getTradeHubGames(decodedBody, response, request, uuid){
+    db.getTradeable(function callback(success, data) {
+        console.log("data");
+        console.log(JSON.stringify(data));
+        if (success == true) {
+            response.writeHead(200, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'localhost:8888'});
+            response.end(JSON.stringify(data));
+        }
+        else {
+            response.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': 'localhost:8888'});
+            response.end("error");
+        }
+    })
 }
 
 exports.login = login;
 exports.logout = logout;
+exports.greet = greet;
+exports.getTradeHubGames = getTradeHubGames;

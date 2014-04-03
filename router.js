@@ -22,11 +22,13 @@ function route(open, pathname, response, request, show, postHandle, bonus, uuid)
             //Checks what action has occured
             postHandle[decodedBody.action](decodedBody, response, request, uuid);
             //After 24 minutes, clear the session
+            /*
             clearTimeout(myVar);
             myVar = setTimeout(function () {
                 console.log("Clearing session: " + uuid);
                 db.clearSession(cookies["gbsessioncookie"]);
             }, 1000000);//1440000
+            */
         });
     }
     if (request.method == 'GET') {

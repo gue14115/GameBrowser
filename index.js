@@ -7,6 +7,8 @@ var postHandlers = require("./postHandlers");
 var postHandle = {};
 postHandle["login"] = postHandlers.login;
 postHandle["logout"] = postHandlers.logout;
+postHandle["greet"] = postHandlers.greet;
+postHandle["getTradeHubGames"] = postHandlers.getTradeHubGames;
 
 open = requestHandlers.open;
 server.start(router.route, open, viewer.show, postHandle);

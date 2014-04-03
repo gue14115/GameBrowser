@@ -44,13 +44,15 @@ function responseLogin(data){
     }
     else{
         id = data["u_id"];
-        $('#email').val("Logged in as: "+id);
+        //$('#email').val("Logged in as: "+id);
+        window.location.replace('/index.html');
+        window.location.reload();
     }
 }
 
 function responseLogout(){
-    console.log("Hello");
     window.location.replace('/login.html');
+    window.location.reload();
 }
 
 function servererror(){
